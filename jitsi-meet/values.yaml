@@ -11,7 +11,7 @@ fullnameOverride: ""
 
 enableAuth: false
 enableGuests: true
-publicURL: ""
+publicURL: "https://jitsi.dennychen.tw"
 
 tz: Europe/Amsterdam
 
@@ -133,15 +133,15 @@ jvb:
 
   stunServers: 'meet-jit-si-turnrelay.jitsi.net:443'
   useHostPort: false
-  UDPPort: 10000
+  UDPPort: 30000
   service:
     enabled:
-    type: ClusterIP
+    type: LoadBalancer
     externalIPs: []
     ## Annotations to be added to the service (if LoadBalancer is used)
     ##
     annotations: {}
-
+  publicIP: 35.223.168.143
   breweryMuc: jvbbrewery
 
   livenessProbe:
@@ -285,4 +285,4 @@ prosody:
   #     name: '{{ include "prosody.fullname" . }}-jibri'
   image:
     repository: jitsi/prosody
-    tag: 'stable-6865'
+    tag: 'stable-7439-2'
