@@ -1,0 +1,24 @@
+---
+apiVersion: "networking.k8s.io/v1"
+kind: "Ingress"
+metadata:
+  name: {{ include "jitsi-meet.web.fullname" . }}
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: {{ include "jitsi-meet.web.staticip.fullname" . }} 
+    networking.gke.io/managed-certificates: "jitsi-cert"
+    cloud.google.com/neg: '{"ingress": true}'
+spec:
+  rules:
+  - http:
+      paths:
+      - path: "/*"
+        backend:
+          service:
+            name: {{ include "jitsi-meet.web.fullname" . }}
+            port:
+              number: 80
+        pathType: "ImplementationSpecific"
+    host: "jitsi.zhengweiliu.com"
+status:
+  loadBalancer: {}
+
