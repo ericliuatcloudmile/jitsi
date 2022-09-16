@@ -22,6 +22,8 @@ web:
   replicaCount: 1
   image:
     repository: jitsi/web
+    tag: stable-7648-4
+    # tag: stable-6433
 
   extraEnvs: {}
   service:
@@ -53,7 +55,7 @@ web:
   ## Set this to ClusterIP of your `kube-dns` service
   ## when using websockets and discovering JVB's address
   ## via k8s services.
-  resolverIP: 10.43.0.10
+  resolverIP: 192.172.0.10
 
   livenessProbe:
     httpGet:
@@ -99,10 +101,12 @@ jicofo:
   replicaCount: 1
   image:
     repository: jitsi/jicofo
+    tag: stable-7648-4
+    # tag: stable-6433
 
   xmpp:
     user: focus
-    password: xmpp.paswd
+    password: 8900744516b7a64e3b30d08c37036d43
     componentSecret:
 
   livenessProbe:
@@ -126,10 +130,12 @@ jvb:
   replicaCount: 1
   image:
     repository: jitsi/jvb
+    # tag: stable-7648-4
+    tag: stable-6433
 
   xmpp:
     user: jvb
-    password: xmpp.paswd
+    password: 3924414c516b684e10d229028cef93fe
 
   stunServers: 'meet-jit-si-turnrelay.jitsi.net:443'
   useHostPort: false
@@ -141,7 +147,7 @@ jvb:
     ## Annotations to be added to the service (if LoadBalancer is used)
     ##
     annotations: {}
-  publicIP: 34.81.1.189
+  publicIP: 35.189.187.38
   breweryMuc: jvbbrewery
 
   livenessProbe:
@@ -176,6 +182,7 @@ jvb:
     ##
     ## (default is "podIP")
     # serverID: podIP
+    serverID: service
 
   metrics:
     enabled: false
@@ -235,7 +242,7 @@ jibri:
   ## jibri XMPP user credentials:
   xmpp:
     user: jibri
-    password: xmpp.paswd
+    password: 63ee078be5568efb21624184f41137e6
 
   ## recorder XMPP user credentials:
   recorder:
@@ -285,4 +292,5 @@ prosody:
   #     name: '{{ include "prosody.fullname" . }}-jibri'
   image:
     repository: jitsi/prosody
-    tag: 'stable-7439-2'
+    tag: stable-7648-4
+    # tag: stable-6433
